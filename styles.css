@@ -1,0 +1,99 @@
+.jersey-25-charted-regular {
+    font-family: "Jersey 25 Charted", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body{
+    background-color: #FAEED1;
+    color: #3F2305;
+}
+
+.logo{ 
+
+        align-items: center;
+        vertical-align: middle;
+
+}
+
+.item1 {  /*Header*/
+    grid-area: header;
+    align-items: center;
+    background-color: #FDF7E4;
+}  
+
+.item2 { /*Nav*/
+    grid-area: nav;
+    display: flex;
+    align-items: top;
+    background-color: #FDF7E4;
+    justify-content: center;
+}
+
+.item3 { /*Main*/
+    grid-area: main;
+    display: flex;
+    align-items: center;
+    width: auto;
+    background-color: #FDF7E4;
+    justify-content: center;
+}
+  
+.item4 { /*Footer*/
+    grid-area: footer;
+    background-color: #FDF7E4;
+    position: fixed;
+            padding: 1%;
+            bottom: 0;
+            width: 100%;
+
+}
+  
+.grid-container {
+    display: grid;
+    grid-template-areas:
+    'header header header   '
+    'nav nav nav'
+    'main main main   '
+    'footer footer footer';
+    gap: 10px;
+    padding: 20px;
+}
+  
+.grid-container > div {
+    text-align: center;
+    padding: 50px 0;
+    font-size: 30px;
+}
+  
+.head{
+    font-size: 36px;
+    vertical-align: sub ;
+    font-family: "Jersey 25 Charted";
+    color: #3F2305;
+}
+.texto-receta-main{
+display: block;
+}
+
+.recipe-home {
+    display: flex;
+    background-color: #3F2305;
+}
+  
+.recipe-home > div {
+    background-color: #F5F5F5;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+}
+
+.barra-nav{
+    display: flex;
+    background-color: #FAEED1 ;
+    
+}
+
+.barra-nav > div {
+    margin: 100%;
+}
