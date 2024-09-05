@@ -24,10 +24,11 @@ body{
 
 .item2 { /*Nav*/
     grid-area: nav;
+    width: 100%;
     display: flex;
-    align-items: top;
+    align-items: center;
+    vertical-align: middle;
     background-color: #FDF7E4;
-    justify-content: center;
 }
 
 .item3 { /*Main*/
@@ -90,10 +91,16 @@ display: block;
 
 .barra-nav{
     display: flex;
+    align-items: center;
+    align-content: center;
+    width: 100%;
     background-color: #FAEED1 ;
+    margin: 5px;
     
 }
 
 .barra-nav > div {
-    margin: 100%;
+    margin: 10px;
+    width: auto;
+    background-color: #FDF7E4 ;
 }
