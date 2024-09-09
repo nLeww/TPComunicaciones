@@ -1,7 +1,21 @@
+
 .jersey-25-charted-regular {
     font-family: "Jersey 25 Charted", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+button{
+
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    color: #3F2305;
+
 }
 
 body{
@@ -38,6 +52,7 @@ body{
     width: auto;
     background-color: #FDF7E4;
     justify-content: center;
+    margin-bottom: 10px;
 }
   
 .item4 { /*Footer*/
@@ -49,13 +64,32 @@ body{
             width: 100%;
 
 }
+
+.item5 { /*inpiration*/
+    grid-area: insp;
+    background-color: #FDF7E4;
+    align-items: center;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.item6 { /*main txt*/
+    grid-area: maintxt;
+    background-color: #FDF7E4;
+    align-items: center;
+    vertical-align: middle;
+    padding: 10px;
+    word-wrap: break-word;
+}
   
 .grid-container {
     display: grid;
     grid-template-areas:
     'header header header   '
     'nav nav nav'
+    'insp insp insp'
     'main main main   '
+    'maintxt maintxt maintxt'
     'footer footer footer';
     gap: 10px;
     padding: 20px;
@@ -74,12 +108,14 @@ body{
     color: #3F2305;
 }
 .texto-receta-main{
-display: block;
+color: #3F2305;
+    display: block;
 }
 
 .recipe-home {
     display: flex;
     background-color: #3F2305;
+    margin-bottom: 20px;
 }
   
 .recipe-home > div {
@@ -93,14 +129,46 @@ display: block;
     display: flex;
     align-items: center;
     align-content: center;
-    width: 100%;
+    width: 80%;
+    height: 10%;
     background-color: #FAEED1 ;
     margin: 5px;
     
 }
 
-.barra-nav > div {
+.sesion{
+    display: flex;
+    background-color: #FAEED1 ;
+    justify-content: flex-end;
     margin: 10px;
+    
+}
+
+.sesion > div {
+    background-color: #FDF7E4;
+    margin: 15px;
+    width: auto;
+    height: 10%;
+    vertical-align: middle;
+    align-content: center;
+}
+
+.barra-nav > div {
+    margin: 15px;
     width: auto;
     background-color: #FDF7E4 ;
+}
+
+.frases {
+    text-align: center;
+    font-size: larger;
+    font-family: cursive;
+}
+
+.loginbody {
+    background-color: #FDF7E4 ;
+    margin: 20px;
+    padding: 20px;
+    width: 80%;
+    height: 80%;
 }
