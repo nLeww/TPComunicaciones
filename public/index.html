@@ -1,66 +1,99 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+    <!-- Firebase CDN -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+<script>
+    import { initializeApp } from "firebase/app";
+
+import { getAnalytics } from "firebase/analytics";
+
+// TODO: Add SDKs for Firebase products that you want to use
+
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+
+// Your web app's Firebase configuration
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyCy_t1DedTBawkaZeUcabgZRCqsv64da7U",
+
+  authDomain: "base-dato-receta.firebaseapp.com",
+
+  projectId: "base-dato-receta",
+
+  storageBucket: "base-dato-receta.appspot.com",
+
+  messagingSenderId: "76416681555",
+
+  appId: "1:76416681555:web:59879c302164ed576628a6",
+
+  measurementId: "G-C0LBS188YK"
+
+};
+
+
+// Initialize Firebase
+
+const app = initializeApp(firebaseConfig);
+
+const analytics = getAnalytics(app);
+</script>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>comumicamiiones</title>
-  <link href="styles.css" rel="stylesheet" type="text/css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Recipe Website</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <h1>Delicious Recipes</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#recipes">Recipes</a></li>
+                <li><a href="#quotes">Inspiration</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<div class="main-grid">
+    <!-- Body -->
+    <main>
+        <!-- Recipe Posting Form -->
+        <section id="recipe-form">
+            <h2>Submit Your Recipe</h2>
+            <form id="recipeSubmitForm">
+                <input type="text" id="recipeTitle" placeholder="Recipe Title" required>
+                <textarea id="recipeContent" placeholder="Recipe Instructions" required></textarea>
+                <button type="submit">Post Recipe</button>
+            </form>
+        </section>
 
-    <div class="item1" ><a href="index.html"><img src="favicon.ico" class="logo" alt="Logo" ></a> Recetas Grupo2 </div>
+        <!-- Recipe List -->
+        <section id="recipes">
+            <h2>Recipes</h2>
+            <ul id="recipeList"></ul>
+        </section>
 
-    <div class="item2"> 
-        <div class="barra-nav">
-            <div><a href="recetas.html"> <button>Recetas</button> </a></div>
-            <div><a href="recetas.html"> <button>Receta Random</button> </a></div>
-            <div>Subir Receta</div>
-            <div>Mis Recetas</div>
-        </div>
-        <div class="sesion">
-            <div><a href="login.html"> <button>Inicio Sesion</button> </a></div>
-            <div>Perfil</div>
-        </div>
-    </div>
+        <!-- Inspirational Quotes -->
+        <section id="quotes">
+            <h2>Inspirational Quotes</h2>
+            <blockquote id="quoteDisplay"></blockquote>
+        </section>
+    </main>
 
-    
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 My Recipe Website</p>
+    </footer>
 
-    <div class="item5">
-        <div class="frases">Frase inspiradora yay</div>
-    </div>
-
-    <div class="item3">
-
-        <div class="recipe-home">
-            <div>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLQzQqVBk7LmMbMSaEuRy3AkVv1lyGqThm4Q&s" style="width:20%px;height:20% alt="pepe">
-                <span class="texto-receta-main">texto momo</span>
-            </div>
-            <div>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLQzQqVBk7LmMbMSaEuRy3AkVv1lyGqThm4Q&s" style="width:20%px;height:20% alt="pepe">
-                <span class="texto-receta-main">texto momo</span>
-            </div>
-            <div>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLQzQqVBk7LmMbMSaEuRy3AkVv1lyGqThm4Q&s" style="width:20%px;height:20% alt="pepe">
-                <span class="texto-receta-main">texto momo</span>
-            </div>
-        </div>
-
-    </div>  
-
-    <div class="item6">
-        <div>
-            <p>textotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotextotexto</p>
-        </div>
-    </div>
-
-    </div>
-    <div class="item4">&copy; Grupo2 2024</div>
-
-</div>
-
+    <script src="script.js"></script>
 </body>
 </html>
