@@ -76,13 +76,13 @@ async function submitRecipe(e) {
 
 // Array of inspirational quotes
 const quotes = [
-    '"The secret ingredient is alaaaaaways love." - Anon',
-    '"Success is not the key to happiness. Happiness is the key to success." - Albert Schweitzer',
-    '"You miss 100% of the shots you don’t take." - Wayne Gretzky',
-    '"The best time to plant a tree was 20 years ago. The second best time is now." - Chinese Proverb',
-    '"Believe you can and you\'re halfway there." - Theodore Roosevelt',
-    '"Do what you can, with what you have, where you are." - Theodore Roosevelt',
-    '"Success is not how high you have climbed, but how you make a positive difference to the world." - Roy T. Bennett',
+    'Habia una vez - trus',
+    'Camaron que duerme se lo lleva la corriente',
+    'Jijiji ja',
+    'Yo le conte -un pajarito',
+    'Frase 6',
+    'Abran una ventana pls',
+    'otra frase mas',
 ];
 
 // Function to display a random quote
