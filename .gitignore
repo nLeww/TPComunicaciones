@@ -1,0 +1,24 @@
+# Node modules (if using Node.js)
+node_modules/
+
+# Build directories
+dist/
+build/
+
+# Logs
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Environment variables (if applicable)
+.env
+
+# Other files you want to ignore
+*.bak
+*.swp
