@@ -65,26 +65,37 @@ function displayRandomRecipes(recipes) {
     e.preventDefault();
     const title = document.getElementById('recipe-title').value;
     const description = document.getElementById('recipe-description').value;
-    const ingredients = document.getElementById('recipe-ingredients').value; // Add an input for ingredients
-    const steps = document.getElementById('recipe-steps').value; // Add an input for steps
 
-    const response = await fetch('/api/recipe', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ title, description, ingredients, steps }),
-    });
+    if (!title || !description || !ingredients || !steps) {
+        console.error('All fields must be filled out.');
+        return;
+    }
+    
 
-    const result = await response.json();
+    // Assuming ingredients and steps are collected from form inputs
+    const ingredients = document.getElementById('recipe-ingredients').value; // Ensure you have this input
+    const steps = document.getElementById('recipe-steps').value; // Ensure you have this input
 
-    if (response.ok) {
-        console.log(result.message);
-        document.getElementById('recipe-form').reset(); // Clear the form
+    let { data, error } = await supabase
+        .from('recipes')
+        .insert([
+            { 
+                title: title, 
+                description: description, 
+                ingredients: ingredients, 
+                steps: steps 
+            }
+        ]);
+
+    if (error) {
+        console.error('Error adding recipe:', error); // Log the error
     } else {
-        console.error('Error adding recipe:', result.error);
+        console.log('Recipe added successfully:', data); // Log success
+        document.getElementById('recipe-form').reset(); // Clear the form
+        fetchRecipes(); // Reload the recipe list
     }
 }
+
 
 
 
