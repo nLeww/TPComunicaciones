@@ -66,33 +66,46 @@ function displayRandomRecipes(recipes) {
     const title = document.getElementById('recipe-title').value;
     const description = document.getElementById('recipe-description').value;
 
-    // Ensure these elements exist in your HTML and are being accessed correctly
-    const ingredients = document.getElementById('recipe-ingredients').value; // Make sure this input exists
-    const steps = document.getElementById('recipe-steps').value; // Make sure this input exists
+    // Collect ingredients and steps from the form (assuming you have these input fields)
+    const ingredients = document.getElementById('recipe-ingredients').value; // Make sure to create this input in your HTML
+    const steps = document.getElementById('recipe-steps').value; // Make sure to create this input in your HTML
 
-    // Check for empty fields
-    if (!title || !description || !ingredients || !steps) {
-        console.error('All fields must be filled out.');
-        return;
-    }
-
+    // Add recipe to Supabase
     let { data, error } = await supabase
         .from('recipes')
-        .insert([{ 
-            title: title, 
-            description: description, 
-            ingredients: ingredients, 
-            steps: steps 
-        }]);
+        .insert([{ title: title, description: description }]); // Don't include the 'id' field
 
     if (error) {
-        console.error('Error adding recipe:', error);
+        console.error('Error adding recipe', error);
     } else {
         console.log('Recipe added successfully:', data);
-        document.getElementById('recipe-form').reset(); // Clear the form
+        
+        // Call your API to create the HTML page
+        const htmlResponse = await fetch('/api/createRecipe', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                title: title,
+                description: description,
+                ingredients: ingredients,
+                steps: steps,
+            }),
+        });
+
+        const result = await htmlResponse.json();
+        console.log(result.message); // Should indicate success or error
+
+        // Reset the form and fetch updated recipes
+        document.getElementById('recipe-form').reset();
         fetchRecipes(); // Reload the recipe list
     }
 }
+
+// Add event listener to the form for submission
+document.getElementById('recipe-form').addEventListener('submit', submitRecipe);
+
 
 
 
