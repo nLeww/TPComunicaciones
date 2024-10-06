@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="content-wrapper">
+        <header>
+            <h1>Add Ingredients & Steps</h1>
+        </header>
+        <section class="add-ingredients">
+            <form id="details-form">
+                <label for="ingredients">Ingredients:</label>
+                <textarea id="ingredients" rows="4" cols="50" required></textarea>
+                <br/>
+                <label for="steps">Steps:</label>
+                <textarea id="steps" rows="4" cols="50" required></textarea>
+                <br/>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; <span id="current-year"></span> Recetas. no copiar.</p>
+    </footer>
+    <script type="module" src="details-script.js"></script>
+</body>
+</html>

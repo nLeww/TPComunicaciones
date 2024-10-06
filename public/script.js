@@ -45,22 +45,26 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
    // Function to submit a new recipe to Supabase
-async function submitRecipe(e) {
+   async function submitRecipe(e) {
     e.preventDefault();
     const title = document.getElementById('recipe-title').value;
     const description = document.getElementById('recipe-description').value;
 
     let { data, error } = await supabase
         .from('recipes')
-        .insert([{ title: title, description: description }]); // Don't include the 'id' field
+        .insert([{ title: title, description: description }]);
 
     if (error) {
         console.error('Error adding recipe', error);
     } else {
         document.getElementById('recipe-form').reset(); // Clear the form
-        fetchRecipes(); // Reload the recipe list
+        
+        // Redirect to the new page to add ingredients and steps
+        const recipeId = data[0].id; // Get the newly created recipe's ID
+        window.location.href = `/recipe-details.html?id=${recipeId}`; // Change this to the actual page you're creating
     }
 }
+
 
     
 
