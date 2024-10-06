@@ -34,31 +34,44 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const title = document.getElementById('recipe-title').value;
         const description = document.getElementById('recipe-description').value;
-        const ingredients = document.getElementById('recipe-ingredients').value; // Assuming you have this input
-        const steps = document.getElementById('recipe-steps').value; // Assuming you have this input
     
         let { data, error } = await supabase
             .from('recipes')
-            .insert([{ title, description, ingredients, steps }]); // Include ingredients and steps
+            .insert([{ title: title, description: description }]); // Don't include the 'id' field
+    
+        console.log('API Response:', { data, error }); // Log the API response
     
         if (error) {
             console.error('Error adding recipe', error);
         } else {
-            const recipeId = data[0].id; // Get the ID of the newly created recipe
-            console.log('Recipe added successfully:', data);
+            // Check if data is available before accessing it
+            if (data && data.length > 0) {
+                console.log('Recipe added successfully:', data);
+                const recipeId = data[0].id; // Assuming `id` is the primary key
+                // Call your API to create the HTML page
+                const htmlResponse = await fetch('/api/createRecipe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        description: description,
+                        ingredients: ingredients, // Ensure you are defining ingredients
+                        steps: steps, // Ensure you are defining steps
+                    }),
+                });
     
-            // Redirect to the new recipe page
-            window.location.href = `/api/recipe/${recipeId}`; // This will call the API to get the generated HTML
+                const result = await htmlResponse.json();
+                console.log(result.message); // Should indicate success or error
+                document.getElementById('recipe-form').reset(); // Clear the form
+                fetchRecipes(); // Reload the recipe list
+            } else {
+                console.error('No data returned from Supabase');
+            }
         }
-
-        // After adding the recipe successfully
-    if (!error) {
-        const recipeId = data[0].id; // Assuming `id` is the primary key
-        // Redirect to the new recipe page
-        window.location.href = `/recipe/${recipeId}`;
-}
-
     }
+    
     
     
 
