@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recetas grupo 2</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Load Supabase directly from CDN -->
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
-
 </head>
 <body>
     <div class="content-wrapper">
@@ -28,15 +26,14 @@
                 <input type="text" id="recipe-description" name="description" required>
                 <br/>
                 <label for="recipe-ingredients">Ingredients:</label>
-                <textarea id="recipe-ingredients" name="ingredients" required></textarea>
+                <input type="text" id="recipe-ingredients" name="ingredients" required>
                 <br/>
-                <label for="recipe-steps">Cooking Steps:</label>
-                <textarea id="recipe-steps" name="steps" required></textarea>
+                <label for="recipe-steps">Steps:</label>
+                <input type="text" id="recipe-steps" name="steps" required>
                 <br/>
                 <button type="submit">Submit</button>
             </form>
         </section>
-        
     </div>
     <footer>
         <p>&copy; <span id="current-year"></span> Recetas. no copiar.</p>
