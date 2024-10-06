@@ -66,35 +66,34 @@ function displayRandomRecipes(recipes) {
     const title = document.getElementById('recipe-title').value;
     const description = document.getElementById('recipe-description').value;
 
+    // Ensure these elements exist in your HTML and are being accessed correctly
+    const ingredients = document.getElementById('recipe-ingredients').value; // Make sure this input exists
+    const steps = document.getElementById('recipe-steps').value; // Make sure this input exists
+
+    // Check for empty fields
     if (!title || !description || !ingredients || !steps) {
         console.error('All fields must be filled out.');
         return;
     }
-    
-
-    // Assuming ingredients and steps are collected from form inputs
-    const ingredients = document.getElementById('recipe-ingredients').value; // Ensure you have this input
-    const steps = document.getElementById('recipe-steps').value; // Ensure you have this input
 
     let { data, error } = await supabase
         .from('recipes')
-        .insert([
-            { 
-                title: title, 
-                description: description, 
-                ingredients: ingredients, 
-                steps: steps 
-            }
-        ]);
+        .insert([{ 
+            title: title, 
+            description: description, 
+            ingredients: ingredients, 
+            steps: steps 
+        }]);
 
     if (error) {
-        console.error('Error adding recipe:', error); // Log the error
+        console.error('Error adding recipe:', error);
     } else {
-        console.log('Recipe added successfully:', data); // Log success
+        console.log('Recipe added successfully:', data);
         document.getElementById('recipe-form').reset(); // Clear the form
         fetchRecipes(); // Reload the recipe list
     }
 }
+
 
 
 
