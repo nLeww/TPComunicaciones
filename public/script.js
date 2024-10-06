@@ -8,18 +8,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const supabase = createClient(supabaseUrl, supabaseKey); // Correctly initialize the client
 
     // Function to fetch all recipes from Supabase
-    async function fetchRecipes() {
-        let { data: recipes, error } = await supabase
-            .from('recipes')
-            .select('*');
-    
-        console.log('Fetched recipes:', recipes); // Log the fetched recipes
-        if (error) {
-            console.error('Error fetching recipes', error);
-        } else {
-            displayRandomRecipes(recipes);
-        }
+async function fetchRecipes() {
+    const { data: recipes, error } = await supabase
+        .from('recipes')
+        .select('*');
+
+    if (error) {
+        console.error('Error fetching recipes', error);
+    } else {
+        displayRandomRecipes(recipes); // Display fetched recipes
     }
+}
+
+// Function to display the recipes (already defined)
+function displayRandomRecipes(recipes) {
+    const recipeList = document.getElementById('recipe-list');
+    recipeList.innerHTML = ''; // Clear previous content
+
+    const shuffledRecipes = recipes.sort(() => 0.5 - Math.random());
+    const randomRecipes = shuffledRecipes.slice(0, 5);
+
+    randomRecipes.forEach(recipe => {
+        const recipeCard = document.createElement('div');
+        recipeCard.className = 'recipe-card';
+        recipeCard.innerHTML = `<h3>${recipe.title}</h3><p>${recipe.description}</p>`;
+        recipeList.appendChild(recipeCard);
+    });
+}
+
     
 
     // Function to randomly pick a subset of recipes and display them
@@ -49,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const title = document.getElementById('recipe-title').value;
     const description = document.getElementById('recipe-description').value;
-    const ingredients = document.getElementById('recipe-ingredients').value; // Collect ingredients
-    const steps = document.getElementById('recipe-steps').value; // Collect steps
+    const ingredients = document.getElementById('recipe-ingredients').value; // Add an input for ingredients
+    const steps = document.getElementById('recipe-steps').value; // Add an input for steps
 
     const response = await fetch('/api/recipe', {
         method: 'POST',
@@ -60,15 +76,16 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({ title, description, ingredients, steps }),
     });
 
-    const data = await response.json();
+    const result = await response.json();
+
     if (response.ok) {
-        console.log('Recipe submitted:', data);
+        console.log(result.message);
         document.getElementById('recipe-form').reset(); // Clear the form
-        // Optionally redirect to another page
     } else {
-        console.error('Error adding recipe', data);
+        console.error('Error adding recipe:', result.error);
     }
 }
+
 
 
 
