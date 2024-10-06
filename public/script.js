@@ -34,44 +34,33 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const title = document.getElementById('recipe-title').value;
         const description = document.getElementById('recipe-description').value;
-        const ingredients = document.getElementById('recipe-ingredients').value;
-        const steps = document.getElementById('recipe-steps').value;
-
-        if (!title || !description || !ingredients || !steps) {
-            alert('Please fill in all fields!');
-            return;
-        }
-
+        const ingredients = document.getElementById('recipe-ingredients').value; // Assuming you have this input
+        const steps = document.getElementById('recipe-steps').value; // Assuming you have this input
+    
         let { data, error } = await supabase
             .from('recipes')
-            .insert([{ title, description, ingredients, steps }]);
-
+            .insert([{ title, description, ingredients, steps }]); // Include ingredients and steps
+    
         if (error) {
-            console.error('Error adding recipe:', error.message);
-            alert('Error adding recipe: ' + error.message);
-            return;
+            console.error('Error adding recipe', error);
+        } else {
+            const recipeId = data[0].id; // Get the ID of the newly created recipe
+            console.log('Recipe added successfully:', data);
+    
+            // Redirect to the new recipe page
+            window.location.href = `/api/recipe/${recipeId}`; // This will call the API to get the generated HTML
         }
 
-        console.log('Recipe added successfully:', data);
+        // After adding the recipe successfully
+    if (!error) {
+        const recipeId = data[0].id; // Assuming `id` is the primary key
+        // Redirect to the new recipe page
+        window.location.href = `/recipe/${recipeId}`;
+}
 
-        const htmlResponse = await fetch('/api/createRecipe', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                title,
-                description,
-                ingredients,
-                steps,
-            }),
-        });
-
-        const result = await htmlResponse.json();
-        console.log(result.message);
-        document.getElementById('recipe-form').reset();
-        fetchRecipes();
     }
+    
+    
 
     document.getElementById('recipe-form').addEventListener('submit', submitRecipe);
     fetchRecipes();
