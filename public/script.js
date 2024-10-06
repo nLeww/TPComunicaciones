@@ -49,21 +49,28 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const title = document.getElementById('recipe-title').value;
     const description = document.getElementById('recipe-description').value;
+    const ingredients = document.getElementById('recipe-ingredients').value; // Collect ingredients
+    const steps = document.getElementById('recipe-steps').value; // Collect steps
 
-    let { data, error } = await supabase
-        .from('recipes')
-        .insert([{ title: title, description: description }]);
+    const response = await fetch('/api/recipe', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title, description, ingredients, steps }),
+    });
 
-    if (error) {
-        console.error('Error adding recipe', error);
-    } else {
+    const data = await response.json();
+    if (response.ok) {
+        console.log('Recipe submitted:', data);
         document.getElementById('recipe-form').reset(); // Clear the form
-        
-        // Redirect to the new page to add ingredients and steps
-        const recipeId = data[0].id; // Get the newly created recipe's ID
-        window.location.href = `/recipe-details.html?id=${recipeId}`; // Change this to the actual page you're creating
+        // Optionally redirect to another page
+    } else {
+        console.error('Error adding recipe', data);
     }
 }
+
+
 
 
     
